@@ -1,8 +1,8 @@
 ﻿#Requires AutoHotkey v2.0
 #NoTrayIcon
 
-;@Ahk2Exe-Set FileVersion, 1.0
-;@Ahk2Exe-Set ProductVersion, 1.0.0.0
+;@Ahk2Exe-Set FileVersion, 2.0
+;@Ahk2Exe-Set ProductVersion, 2.0.0.0
 ;@Ahk2Exe-Set CompanyName, Pikakid98
 
 if A_Args.Length < 1
@@ -11,16 +11,31 @@ if A_Args.Length < 1
     ExitApp
 }
 
-Loop Files, A_Args[1], "F"
+fileToCheck := A_Args[1]
+
+Loop Files, fileToCheck, "F"
 SetWorkingDir A_LoopFileDir
 
 editorv1 := IniRead(A_ScriptDir "\Editors.ini", "Editors", "v1")
 editorv2 := IniRead(A_ScriptDir "\Editors.ini", "Editors", "v2")
 
-if FileExist("v1") {
-    Run editorv1 " " '"' A_Args[1] '"'
-}
+; Read the first line of the file
+if (FileExist(fileToCheck)) {
+    fileHandle := FileOpen(fileToCheck, "r")
+    firstLine := fileHandle.ReadLine()
+    fileHandle.Close()
 
-if not FileExist("v1") {
-    Run editorv2 " " '"' A_Args[1] '"'
+    ; Check if the first line contains "#Requires AutoHotkey v1"
+    if InStr(firstLine, "#Requires AutoHotkey v1") {
+        ; Event 1 - First line contains "#Requires AutoHotkey v1"
+        Run editorv1 " " '"' fileToCheck '"'
+    }
+    
+    if InStr(firstLine, "#Requires AutoHotkey v2") {
+        ; Event 2 - First line contains "#Requires AutoHotkey v2"
+        Run editorv2 " " '"' fileToCheck '"'
+    }
+}
+else {
+    MsgBox("The file " . fileToCheck . " does not exist!")
 }
