@@ -5,7 +5,11 @@ By the way. If it wasn't obvious.. Usage of this tool requires a valid install o
 
 ### <b><u>Building requirements</b></u>
 
-[AutoHotkey v2](https://autohotkey.com)
+[AutoHotkey v2](https://github.com/AutoHotkey/AutoHotkey/releases)
+\
+[Ahk2Exe](https://github.com/AutoHotkey/Ahk2Exe/releases)
+\
+[Upx](https://github.com/upx/upx/releases)
 
 <details>
 <summary>If compiling with Compile-in-ator</summary>
