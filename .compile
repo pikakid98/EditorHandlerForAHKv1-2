@@ -1,5 +1,1 @@
 "%AHK%\Compiler\Ahk2Exe.exe" /in "EditorHandlerForAHKv1&2.ahk" /out "Output\EditorHandlerForAHKv1&2.exe" /icon "Icon.ico" /compress 2 /base "%AHK%\v2\AutoHotkey64.exe"
-
-ECHO ^[Editors]^ >> "Output\Editors.ini"
-ECHO ^v1=^ >> "Output\Editors.ini"
-ECHO ^v2=^ >> "Output\Editors.ini"

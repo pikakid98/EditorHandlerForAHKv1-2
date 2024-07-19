@@ -1,0 +1,9 @@
+﻿#Requires AutoHotkey v2.0
+
+MsgBox "This editor does not exist or has not been set", "Error!" 
+
+if FileExist(fallback) {
+	Run fallback " " fileToCheck
+} else {
+	MsgBox "Notepad.exe appears to have been uninstalled from your system. The fallback has failed", "Error!"
+}
